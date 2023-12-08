@@ -34,8 +34,6 @@ class _QuizState extends State<Quiz> {
               colors: [
                 Color(0xffee9ca7), // Light pink color
                 Color(0xffffdde1), // Pale pink color
-                Colors.white,
-                Colors.green,
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomCenter,
