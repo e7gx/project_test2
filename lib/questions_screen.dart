@@ -12,9 +12,18 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentquestionsindex = 0;
+
+  answerQuistion() {
+    //currentquestionsindex = currentquestionsindex + 1;
+    //currentquestionsindex += 1;
+    //  هذا الكود مشابهه للي فوق دارت موفره الميزة هذي
+    currentquestionsindex++; //this aollsw do the same job but only increments with 1
+  }
+
   @override
   Widget build(context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentquestionsindex];
 
     return SizedBox(
       width: double.infinity,
