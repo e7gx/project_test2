@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_test2/style/answer_ques_button.dart';
 import 'package:project_test2/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -18,7 +19,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     //currentquestionsindex = currentquestionsindex + 1;
     //currentquestionsindex += 1;
     //  هذا الكود مشابهه للي فوق دارت موفره الميزة هذي
-    currentquestionsindex++; //this aollsw do the same job but only increments with 1
+    setState(
+      () {
+        currentquestionsindex++;
+      },
+    );
+    //this aollsw do the same job but only increments with 1
   }
 
   @override
@@ -35,16 +41,17 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           children: [
             Text(
               currentQuestion.text,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w500),
+              style: GoogleFonts.lato(
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
+            const SizedBox(height: 30),
             ...currentQuestion.getShuffledAnswers().map(
               (answer) {
-                return AnswerButton(answerText: answer, onTap: () {});
+                return AnswerButton(answerText: answer, onTap: answerQuistion);
               },
             ),
           ],
