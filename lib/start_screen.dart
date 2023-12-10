@@ -40,6 +40,10 @@ class StartScreen extends StatelessWidget {
               size: 30,
             ),
             style: OutlinedButton.styleFrom(
+              side: const BorderSide(
+                width: 2.5,
+                color: Color.fromARGB(255, 119, 83, 83),
+              ),
               textStyle: GoogleFonts.lato(
                   color: const Color.fromARGB(255, 119, 83, 83),
                   fontWeight: FontWeight.bold,

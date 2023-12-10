@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:project_test2/style/answer_ques_button.dart';
 import 'package:project_test2/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_test2/questions_screen.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.onSelectAnswer});
 
+  final void Function(String answer) onSelectAnswer;
   @override
   State<QuestionsScreen> createState() {
     return _QuestionsScreenState();
@@ -15,13 +17,14 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentquestionsindex = 0;
 
-  answerQuistion() {
+  answerQuistion(String selectedAnswer) {
+    widget.onSelectAnswer('...');
     //currentquestionsindex = currentquestionsindex + 1;
     //currentquestionsindex += 1;
-    //  هذا الكود مشابهه للي فوق دارت موفره الميزة هذي
     setState(
       () {
         currentquestionsindex++;
+        //  هذا الكود مشابهه للي فوق دارت موفره الميزة هذي
       },
     );
     //this aollsw do the same job but only increments with 1
@@ -51,7 +54,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             const SizedBox(height: 30),
             ...currentQuestion.getShuffledAnswers().map(
               (answer) {
-                return AnswerButton(answerText: answer, onTap: answerQuistion);
+                return AnswerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answerQuistion(answer);
+                  },
+                );
               },
             ),
           ],
