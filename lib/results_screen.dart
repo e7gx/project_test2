@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:project_test2/data/questions.dart';
-import 'package:project_test2/questions_summary.dart';
+import 'package:project_test2/page/questions_summary.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen({
+    super.key,
+    required this.chosenAnswers,
+    required this.onRestart,
+  });
 
+  final void Function() onRestart;
   final List<String> chosenAnswers;
 
   List<Map<String, Object>> getSummaryData() {
@@ -14,13 +19,14 @@ class ResultsScreen extends StatelessWidget {
     for (var i = 0; i < chosenAnswers.length; i++) {
       summary.add(
         {
-          'question_index': i, //string
+          'question_index': i,
           'question': questions[i].text,
           'correct_answer': questions[i].answers[0],
-          'user_answer': chosenAnswers[i],
+          'user_answer': chosenAnswers[i]
         },
       );
     }
+
     return summary;
   }
 
@@ -40,31 +46,32 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'You answered $numCorrectQuestions of $numTotalQuestions questions correctly',
-            ),
-            const SizedBox(height: 30),
-            QuestionsSummary(summaryData),
-            const SizedBox(height: 30),
-            OutlinedButton.icon(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.restart_alt,
-                color: Color.fromARGB(255, 119, 83, 83),
-                size: 30,
+              'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 119, 83, 83),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(
-                  width: 2.5,
-                  color: Color.fromARGB(255, 119, 83, 83),
-                ),
-                textStyle: GoogleFonts.lato(
-                    color: const Color.fromARGB(255, 119, 83, 83),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            QuestionsSummary(summaryData),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton.icon(
+              onPressed: onRestart,
+              style: TextButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 119, 83, 83),
               ),
-              label: const Text('Restart Quiz'),
-            ),
+              icon: const Icon(Icons.refresh),
+              label: const Text(
+                'Restart Quiz!',
+                style: TextStyle(fontSize: 18),
+              ),
+            )
           ],
         ),
       ),
