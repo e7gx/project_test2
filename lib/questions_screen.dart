@@ -17,13 +17,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentquestionsindex = 0;
 
   answerQuistion(String selectedAnswer) {
-    widget.onSelectAnswer('....');
-    //currentquestionsindex = currentquestionsindex + 1;
-    //currentquestionsindex += 1;
+    widget.onSelectAnswer(selectedAnswer);
+
     setState(
       () {
         currentquestionsindex++;
-        //  هذا الكود مشابهه للي فوق دارت موفره الميزة هذي
       },
     );
     //this aollsw do the same job but only increments with 1
