@@ -22,7 +22,7 @@ class AnswerButton extends StatelessWidget {
         textStyle:
             const TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         foregroundColor: Colors.black87,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
         ),
